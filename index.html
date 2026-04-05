@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Instagram</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: #1e2b32;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      color: #fff;
+      padding: 0;
+    }
+
+    .top-lang {
+      width: 100%;
+      text-align: center;
+      padding: 16px 0 8px;
+      font-size: 15px;
+      color: #cdd6da;
+      font-weight: 400;
+    }
+
+    .main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      padding: 0 24px;
+      gap: 0;
+    }
+
+    /* Instagram gradient icon */
+    .ig-icon {
+      width: 88px;
+      height: 88px;
+      border-radius: 22px;
+      background: linear-gradient(135deg, #f09433 0%, #e6683c 20%, #dc2743 40%, #cc2366 65%, #833ab4 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 72px;
+      box-shadow: 0 4px 24px rgba(188,42,141,.35);
+    }
+
+    .ig-icon svg {
+      width: 52px;
+      height: 52px;
+    }
+
+    /* Form */
+    form {
+      width: 100%;
+      max-width: 420px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    input {
+      width: 100%;
+      height: 58px;
+      background: #253038;
+      border: 1.5px solid #3a4d57;
+      border-radius: 14px;
+      color: #fff;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      font-weight: 400;
+      padding: 0 18px;
+      outline: none;
+      transition: border-color .2s;
+    }
+    input::placeholder {
+      color: #7a9aaa;
+      font-size: 16px;
+    }
+    input:focus {
+      border-color: #5a7a8a;
+      background: #2a3840;
+    }
+
+    .btn-login {
+      width: 100%;
+      height: 58px;
+      border: none;
+      border-radius: 30px;
+      background: #1877f2;
+      color: #fff;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 17px;
+      font-weight: 600;
+      cursor: pointer;
+      transition:
+      background .2s, opacity .2s;
+      margin-top: 4px;
+      letter-spacing: .2px;
+    }
+    .btn-login:hover { background: #145db5; }
+    .btn-login:active { background: #1060b8; opacity: .9; }
+    .btn-login:disabled { opacity: .55; cursor: default; }
+
+    .forgotten {
+      text-align: center;
+      margin-top: 18px;
+      font-size: 15px;
+      font-weight: 500;
+      color: #cdd6da;
+      cursor: pointer;
+      text-decoration: none;
+      display: block;
+    }
+    .forgotten:hover { color: #fff; }
+
+    /* Bottom */
+    .bottom {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 24px 0 32px;
+      gap: 16px;
+    }
+
+    /* Meta logo SVG */
+    .meta-logo {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: #7a9aaa;
+      font-size: 14px;
+      font-weight: 500;
+    }
+    .meta-logo svg {
+      width: 52px;
+      height: 16px;
+      fill: #7a9aaa;
+    }
+
+    /* Home indicator bar */
+    .home-bar {
+      width: 134px;
+      height: 5px;
+      background: #cdd6da;
+      border-radius: 3px;
+      margin-top: 4px;
+      opacity: .5;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="top-lang">English (UK)</div>
+
+  <div class="main">
+    <!-- Instagram icon -->
+    <div class="ig-icon">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Camera body -->
+    <rect x="2" y="2" width="20" height="20" rx="5.5" stroke="white" stroke-width="1.8" fill="none"/>
+        <!-- Lens circle -->
+        <circle cx="12" cy="12" r="4.2" stroke="white" stroke-width="1.8" fill="none"/>
+        <!-- Dot -->
+        <circle cx="17.5" cy="6.5" r="1.2" fill="white"/>
+      </svg>
+    </div>
+
+    <form onsubmit="handleLogin(event)">
+      <input type="text" id="username" placeholder="Username, email address or mobile number" autocomplete="username"/>
+      <input type="password" id="password" placeholder="Password" autocomplete="current-password"/>
+      <button type="submit" class="btn-login" id="loginBtn">Log in</button>
+    </form>
+
+    <a href="#" class="forgotten">Forgotten password?</a>
+  </div>
+
+  <div class="bottom">
+    <div class="meta-logo">
+      <svg viewBox="0 0 52 16" xmlns="http://www.w3.org/2000/svg">
+        <!-- Meta wordmark path approximation -->
+        <text x="0" y="13" font-family="sans-serif" font-size="13" font-weight="700" fill="#7a9aaa">∞ Meta</text>
+      </svg>
+    </div>
+   
+  </div>
+
+  <script>
+    function handleLogin(e) {
+      e.preventDefault();
+      const btn = document.getElementById('loginBtn');
+      btn.disabled = true;
+      btn.textContent = 'Logging in…';
+      setTimeout(() => {
+        btn.disabled = false;
+        btn.textContent = 'Log in';
+        alert('This is a UI demo — no actual login occurs.');
+      }, 1500);
+    }
+  </script>
+</body>
+</html>
